@@ -1,10 +1,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from Typhoon import getNodeFromPDF
+from Typhoon import getNodeFromPDF, getFlashCard
 from PDFExtract import pdfExtract
 
 class Item(BaseModel):
     pdf: str
+
+class QA(BaseModel):
+    topic: str
+    n: int
 
 app = FastAPI()
 
@@ -17,4 +21,9 @@ async def genNode():
 @app.post('/getNode')
 async def getNode(item: Item):
     res = getNodeFromPDF(item.pdf)
+    return res
+
+@app.post('/getFlashCards')
+async def getFlashCards(qa: QA):
+    res = getFlashCard(qa.topic, qa.n)
     return res
