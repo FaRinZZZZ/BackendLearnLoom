@@ -44,14 +44,14 @@ async def getNode(file: UploadFile):
         print(e)
         return {"message": e.args}
 
-@app.post('/getFlashCards')
-async def getFlashCards(qa: QA):
-    res = getFlashCard(qa.topic, qa.n)
+@app.post('/getFlashCards/{topic}')
+async def getFlashCards(topic):
+    res = getFlashCard(topic)
     return res
 
-@app.post('/getSummary')
-async def getSummary(topic: Topic):
-    res = getAiSummary(topic.topic)
+@app.post('/getSummary/{topic}')
+async def getSummary(topic):
+    res = getAiSummary(topic)
     return res
 
 if __name__ == "__main__":
