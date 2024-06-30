@@ -53,3 +53,8 @@ async def getFlashCards(qa: QA):
 async def getSummary(topic: Topic):
     res = getAiSummary(topic.topic)
     return res
+
+if __name__ == "__main__":
+    pdf_path = "3.pdf"
+    pdf = pdfExtract(pdf_path)
+    print(getNodeFromPDF(pdf))
