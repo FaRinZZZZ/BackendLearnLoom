@@ -44,12 +44,12 @@ async def getNode(file: UploadFile):
         print(e)
         return {"message": e.args}
 
-@app.post('/getFlashCards/{topic}')
+@app.get('/getFlashCards/{topic}')
 async def getFlashCards(topic):
     res = getFlashCard(topic)
     return res
 
-@app.post('/getSummary/{topic}')
+@app.get('/getSummary/{topic}')
 async def getSummary(topic):
     res = getAiSummary(topic)
     return res

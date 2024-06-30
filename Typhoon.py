@@ -73,7 +73,7 @@ def getNodeFromPDF(pdf):
         return {"Message": "Invalid response from Typhoon"}
     return node
 
-def getFlashCard(topic, n):
+def getFlashCard(topic):
     endpoint = 'https://api.opentyphoon.ai/v1/chat/completions'
     res = requests.post(endpoint, json={
         "model": "typhoon-v1.5x-70b-instruct",
@@ -86,7 +86,7 @@ def getFlashCard(topic, n):
             {
                 
                 "role": "user",
-                "content": "ให้สร้าง flash card เกี่ยวกับเนื้อหาเรื่องที่มีความเกี่ยวข้องกับ "+topic+"​ ในระดับค่อนข้างยาก จำนวน "+str(n)+" ข้อ เป็นภาษาไทย โดยคำถามต้องมีข้อมูลมากพอสำหรับกาารหาคำตอบ และคำตอบต้องไม่เกิน2บรรทัด​ โดยมีรูปแบบเป็น question: และ answer:",
+                "content": "ให้สร้าง flash card เกี่ยวกับเนื้อหาเรื่องที่มีความเกี่ยวข้องกับ "+topic+"​ ในระดับค่อนข้างยาก จำนวน 8 ข้อ เป็นภาษาไทย โดยคำถามต้องมีข้อมูลมากพอสำหรับกาารหาคำตอบ และคำตอบต้องไม่เกิน2บรรทัด​ โดยมีรูปแบบเป็น question: และ answer:",
             }
         ],
         "temperature": 0.3,
