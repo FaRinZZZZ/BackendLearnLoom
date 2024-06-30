@@ -1,17 +1,15 @@
 from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from Typhoon import getNodeFromPDF, getFlashCard
+from Typhoon import getNodeFromPDF, getFlashCard, getAiSummary
 from PDFExtract import pdfExtract
 
-class Item(BaseModel):
-    pdf: str
+class Topic(BaseModel):
+    topic: str
 
 class QA(BaseModel):
     topic: str
     n: int
-
-
 
 app = FastAPI()
 app.add_middleware(
@@ -49,4 +47,9 @@ async def getNode(file: UploadFile):
 @app.post('/getFlashCards')
 async def getFlashCards(qa: QA):
     res = getFlashCard(qa.topic, qa.n)
+    return res
+
+@app.post('/getSummary')
+async def getSummary(topic: Topic):
+    res = getAiSummary(topic.topic)
     return res
